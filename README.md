@@ -35,13 +35,126 @@ gem install microsoft_teams_incoming_webhook_ruby
 
 ## Usage
 
-....
+This gems integrates your Ruby app to Microsoft Teams, though Incoming Webhook connector.
+
+### Configuration of Incoming Webhook connector on your Teams channels
+
+The first step before using the gem is to configure this connector inside your Team channels.
+
+For this purpose, please check the official documentation from Microsoft. It's listed below some useful links:
+
+- https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#create-incoming-webhook-1
+- https://www.youtube.com/watch?v=amvh4rzTCS0
+
+### Gem usage
+
+Once you have Incoming webhook configured in Teams channels, you can execute a sample message (for test) with such code like this:
+
+Example:
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+message = MsTeams::Message.new do |m|
+    m.url = "https://outlook.office.com/...."
+    m.text = "Hello World!"
+end
+
+message.send
+```
+
+Note that there are 2 keys that is the minimum required to define a valid message:
+ - `url`: The Incoming Webhook connector generated via Teams
+ - `text`: The text of the message you are sending
+
+
+You can build the message with any supported [card fields](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#card-fields).
+This example is taken directly from [Microsoft Docs](https://docs.microsoft.com/en-us/outlook/actionable-messages/send-via-connectors)
+```ruby
+require "ms_teams"
+
+message = MsTeams::Message.new do |m|
+    m.url = "https://outlook.office.com/...."
+    m.themeColor = "0072C6"
+    m.title = "Visit the Outlook Dev Portal"
+    m.text = "Click **Learn More** to learn more about Actionable Messages!"
+    m.potentialAction = [
+        {
+            "@type": "ActionCard",
+            "name": "Send Feedback",
+            "inputs": [{
+                "@type": "TextInput",
+                "id": "feedback",
+                "isMultiline": true,
+                "title": "Let us know what you think about Actionable Messages"
+            }],
+            "actions": [{
+                "@type": "HttpPOST",
+                "name": "Send Feedback",
+                "isPrimary": true,
+                "target": "http://..."
+            }]
+        },
+        {
+            "@type": "OpenUri",
+            "name": "Learn More",
+            "targets": [
+                { "os": "default", "uri": "https://docs.microsoft.com/outlook/actionable-messages" }
+            ]
+        }
+    ]
+end
+
+
+# You can edit any field after the message has been built by modifying the `builder` object
+message.builder.text = "Something new"
+
+message.send
+```
+
+Error Handling:
+
+A non-2xx response code will raise a `MsTeams::Message::FailedRequest` error
+
+```ruby
+# ...
+begin
+    message.send
+rescue MsTeams::Message::FailedRequest => e
+    # Do stuff
+end
+```
+
+
+Building an invalid message object will immediately raise an error
+
+```ruby
+message = MsTeams::Message.new do |m|
+    # no url set
+    m.text = "Hello World"
+end
+
+> ArgumentError (`url` cannot be nil. Must be set during initialization)
+
+```
+
+## Execute tests/specs
+
+To execute gem tests locally, use Docker with the commands below:
+
+```bash
+git clone https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby
+cd microsoft_teams_incoming_webhook_ruby
+docker build -t microsoft_teams_incoming_webhook_ruby_specs .
+
+# Then, run this command how many times you want,
+# after editing local files, and so on, to get
+# feedback from test suite of gem.
+docker run -v $(pwd):/app/ -it microsoft_teams_incoming_webhook_ruby_specs
+```
 
 ## Demo
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+...
 
 ## Contributing
 
