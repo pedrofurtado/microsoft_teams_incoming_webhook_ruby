@@ -46,4 +46,4 @@ jobs:
           git config user.email 'pedro.felipe.azevedo.furtado@gmail.com'
           git add --all
           git commit -m 'Publish to Heroku'
-          git push heroku master --force
+          git push heroku `git subtree split --prefix demo master`:master --force

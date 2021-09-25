@@ -1,0 +1,21 @@
+GIT
+  remote: https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby.git
+  revision: 55860e09cf8bcc48894de1f8b582d8c5f19f462c
+  branch: master
+  specs:
+    microsoft_teams_incoming_webhook_ruby (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rack (2.2.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  microsoft_teams_incoming_webhook_ruby!
+  rack
+
+BUNDLED WITH
+   2.1.4
