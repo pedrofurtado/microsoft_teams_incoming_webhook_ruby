@@ -110,7 +110,7 @@ end
 message.send
 ```
 
-- Adding of attribute after object initialization, but before `send` method call
+- Addition of attribute after object initialization, but before `send` method call
 
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
@@ -126,7 +126,7 @@ message.builder.my_another_arbitrary_field = { my: 'value' }
 message.send
 ```
 
-- Removing of attributes after object initialization, but before `send` method call
+- Remotion of attributes after object initialization, but before `send` method call
 
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
@@ -143,7 +143,7 @@ message.builder.delete_field :my_custom_field
 message.send
 ```
 
-- Redefing of attributes after object initialization, but before `send` method call
+- Redefinition of attributes after object initialization, but before `send` method call
 
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
