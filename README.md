@@ -41,7 +41,8 @@ The first step before using this gem is to configure the connector inside your T
 
 For this purpose, please check the official documentation from Microsoft. It's listed below some useful links:
 
-- https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#create-incoming-webhook-1
+- https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook
+- https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/how-to-configure-and-use-incoming-webhooks-in-microsoft-teams/ba-p/2051118
 - https://www.youtube.com/watch?v=amvh4rzTCS0
 
 After the configuration, keep your generated Incoming Webhook URL in a secret and secure way.
@@ -179,7 +180,7 @@ message.send
 
 ### Error handling
 
-If the builder object turn itself invalid before invocation of `send` method, the gem will raise a `MicrosoftTeamsIncomingWebhookRuby::Message::Error::InvalidMessage` exception.
+If the builder object turn itself invalid before invocation of `send` method, the gem will raise a `MicrosoftTeamsIncomingWebhookRuby::Message::Error::InvalidMessage` exception:
 
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
@@ -227,9 +228,17 @@ rescue MicrosoftTeamsIncomingWebhookRuby::Message::Error::FailedRequest
 end
 ```
 
-## Examples of cards
+## Examples
 
-You can build the message with any supported card fields provided by Microsoft.
+You can build and send messages with any supported card fields provided by Microsoft:
+
+- https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/connectors-using
+- https://adaptivecards.io/samples
+- https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference
+
+We will provide below some ready-to-go examples to be used, based on API described in links above.
+
+###
 
 ## Execute tests/specs
 
@@ -267,9 +276,9 @@ docker build -t microsoft_teams_incoming_webhook_ruby_demo .
 docker run -p 3000:3000 -it microsoft_teams_incoming_webhook_ruby_demo
 ```
 
-## Useful links
+## Extra useful links
 
-- ...
+- https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/what-are-webhooks-and-connectors
 - ...
 
 ## Another similar gems for reference
