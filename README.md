@@ -190,7 +190,7 @@ message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
   m.text         = 'Hello World!'
 end
 
-message.delete_field :url
+message.builder.delete_field :url
 
 begin
   message.send
@@ -283,7 +283,7 @@ webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
   m.url   = webhook_url
   m.text  = 'Message with title!'
-  m.title = 'FF0000'
+  m.title = 'My title'
 end
 
 message.send
