@@ -2,6 +2,7 @@
 
 Ruby gem for integration with Microsoft Teams Incoming Webhook.
 
+
 ## Installation
 
 Add this line to your application's Gemfile:
