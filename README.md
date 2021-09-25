@@ -11,7 +11,7 @@
 
 Ruby gem for integration with Microsoft Teams Incoming Webhook.
 
-<img style="max-width: 100%;" src="https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby/blob/master/microsoft_teams.png?raw=true" height="100px" /><img style="max-width: 100%;" src="https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby/blob/master/incoming_webhook.png?raw=true" height="100px" />
+<img style="max-width: 100%;" src="https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby/blob/master/microsoft_teams.png?raw=true" height="100px" /><img style="max-width: 8%; vertical-align: 20px; margin-left: 30px;" src="https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby/blob/master/incoming_webhook.png?raw=true" />
 
 ## Installation
 
