@@ -44,9 +44,13 @@ For this purpose, please check the official documentation from Microsoft. It's l
 - https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#create-incoming-webhook-1
 - https://www.youtube.com/watch?v=amvh4rzTCS0
 
-### 'Hello World' message sending, for testing
+After the configuration, keep your generated Incoming Webhook URL in a secret and secure way.
 
-Once you have Incoming Webhook configured in Teams channels, you can send a sample `Hello World` message (for testing) with such code like this:
+You will use it (the URL) in next sections of README.
+
+### Hello World message sending
+
+Once you have configured Incoming Webhook inside your Teams channels, you can send a very simple `Hello World` message:
 
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
@@ -59,13 +63,59 @@ end
 message.send
 ```
 
-Note that there are 2 keys that is the minimum required to define a valid message:
+Note that there are 2 keys that is the minimum required to define a valid message for Teams:
  - `url`: The URL of Incoming Webhook connector, generated via Microsoft Teams
  - `text`: The text of your message
 
-There are many other possible keys to be sent to Microsoft Incoming Webhook API. But pay attention to always send at least this 2 keys.
+There are many other possible keys to be sent to Microsoft Incoming Webhook API.
+But pay attention to always send **at least** the 2 keys.
 
 ### Configuration of message structure lately of initialization
+
+The message structure and its field can be defined in two moments:
+
+- Initialization of `MicrosoftTeamsIncomingWebhookRuby::Message` object
+- After object initialization, but before `send` method call
+
+You can add/remove any fields arbitrarily, but keeping at least the minimum required fields (`url` and `text`). Otherwise, an error will be generated when invoke `send` method.
+
+Below that are some examples of this manipulation:
+
+Initialization of `MicrosoftTeamsIncomingWebhookRuby::Message` object
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url                        = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text                       = 'Hello World!'
+
+  m.my_arbitrary_field         = 'My value'
+  m.my_another_arbitrary_field = { my: 'value' }
+end
+
+message.send
+```
+
+After object initialization, but before `send` method call
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+def add_another_attribute_later_please_for(message)
+  message.builder.my_arbitrary_field         = 'My value'
+  message.builder.my_another_arbitrary_field = { my: 'value' }
+end
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url  = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text = 'Hello World!'
+end
+
+add_another_attributes_later_please_for(message)
+
+message.send
+```
 
 ### Error handling
 
