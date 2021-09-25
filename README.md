@@ -372,25 +372,6 @@ docker build -t microsoft_teams_incoming_webhook_ruby_specs .
 docker run -v $(pwd):/app/ -it microsoft_teams_incoming_webhook_ruby_specs
 ```
 
-## Demo
-
-It's provided a simple demo app, in Heroku, that uses the gem always in latest commit. You can check and test your messages here:
-
-https://microsoft-teams-incoming-webhook-ruby.herokuapp.com
-
-## Execute demo locally
-
-To execute demo locally, use Docker with the commands below:
-
-```bash
-git clone https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby
-cd microsoft_teams_incoming_webhook_ruby/demo/
-docker build -t microsoft_teams_incoming_webhook_ruby_demo .
-
-# Then, access http://localhost:3000 the see demo in action.
-docker run -p 3000:3000 -it microsoft_teams_incoming_webhook_ruby_demo
-```
-
 ## Similar gems for reference
 
 There are similar and great open source libraries that shares the same purpose of this gem, such as:
