@@ -29,5 +29,8 @@ Style/SymbolArray:
 Lint/ScriptPermission:
   Enabled: false
 
+Layout/LineLength:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: single_quotes
