@@ -1,6 +1,6 @@
 ## [Unreleased]
 
-## [1.0.0] - 2021-09-XX
+## [1.0.0] - 2021-09-25
 
 - Initial release
 - Setup of automation for rubygems publishing
