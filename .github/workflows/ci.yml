@@ -1,0 +1,34 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  dockerfile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Dockerfile
+        run: docker build -t microsoft_teams_incoming_webhook_ruby_specs .
+
+      - name: Run tests inside Docker container
+        run: docker run -v $(pwd):/app/ -i microsoft_teams_incoming_webhook_ruby_specs
+
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: [2.3, 2.4, 2.5, 2.6, 2.7, 3.0]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Ruby ${{ matrix.ruby-version }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run tests with Ruby ${{ matrix.ruby-version }}
+        run: bundle exec rake

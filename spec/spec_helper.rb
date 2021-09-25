@@ -2,6 +2,9 @@
 
 require 'bundler/setup'
 require 'microsoft_teams_incoming_webhook_ruby'
+require 'webmock/rspec'
+
+WebMock.disable_net_connect!
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'

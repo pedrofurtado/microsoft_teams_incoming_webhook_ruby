@@ -12,13 +12,13 @@ gem 'microsoft_teams_incoming_webhook_ruby'
 
 And then execute:
 
-```ruby
+```shell
 bundle install
 ```
 
 Or install it yourself as:
 
-```ruby
+```shell
 gem install microsoft_teams_incoming_webhook_ruby
 ```
 
