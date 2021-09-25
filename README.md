@@ -35,7 +35,7 @@ gem install microsoft_teams_incoming_webhook_ruby
 
 ## Usage
 
-...
+....
 
 ## Demo
 
