@@ -407,6 +407,7 @@ There are similar and great open source libraries that shares the same purpose o
 - https://github.com/shirts/microsoft-teams-ruby
 - https://github.com/oooooooo/msteams-ruby-client
 - https://github.com/eduardolagares/msteams_webhook
+- https://github.com/adventistmedia/msteams_notifier
 
 ## Contributing
 
