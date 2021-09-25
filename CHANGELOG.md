@@ -7,3 +7,4 @@
 - Setup of CI with Github Actions
 - Setup of Dockerfile for local tests
 - Creation of CHANGELOG.md
+- Setup of RuboCop

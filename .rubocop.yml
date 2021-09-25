@@ -1,0 +1,30 @@
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - spec/*
+    - microsoft_teams_incoming_webhook_ruby.gemspec
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
