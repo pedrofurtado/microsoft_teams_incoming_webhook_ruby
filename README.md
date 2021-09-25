@@ -317,38 +317,65 @@ message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
   m.text  = 'Message with potential action!'
   m.potentialAction = [
     {
-      "@type": "ActionCard",
-      "name": "Answer",
-      "inputs": [
+      '@type': 'ActionCard',
+      'name': 'Answer',
+      'inputs': [
         {
-          "@type": "TextInput",
-          "id": "title",
-          "isMultiline": true,
-          "title": "Your text here"
+          '@type': 'TextInput',
+          'id': 'title',
+          'isMultiline': true,
+          'title': 'Your text here'
         }
       ],
-      "actions": [
+      'actions': [
         {
-          "@type": "HttpPOST",
-          "name": "Send my answer",
-          "isPrimary": true,
-          "target": 'https://example.com/example'
+          '@type': 'HttpPOST',
+          'name': 'Send my answer',
+          'isPrimary': true,
+          'target': 'https://example.com/example'
         }
       ]
     },
     {
-      "@type": "HttpPOST",
-      "name": "Make another action",
-      "target": "https://example.com/example2"
+      '@type': 'HttpPOST',
+      'name': 'Make another action',
+      'target': 'https://example.com/example2'
     },
     {
-      "@type": "OpenUri",
-      "name": "Open a URL",
-      "targets": [
+      '@type': 'OpenUri',
+      'name': 'Open a URL',
+      'targets': [
         {
-          "os": "default",
-          "uri": "https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby"
+          'os': 'default',
+          'uri': 'https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby'
         }
+      ]
+    }
+  ]
+end
+
+message.send
+```
+
+### Sections
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url   = webhook_url
+  m.text  = 'Message with sections!'
+  m.sections = [
+    {
+      'text': 'Lorem ipsum vastium',
+      'activityTitle': 'John Smith',
+      'activitySubtitle': '01/01/1990, 11:45AM',
+      'activityImage': 'https://connectorsdemo.azurewebsites.net/images/MSC12_Oscar_002.jpg',
+      'facts': [
+        { 'name': 'Repository:', 'value': 'my-repo' },
+        { 'name': 'Issue #:',    'value': '123456789' }
       ]
     }
   ]
