@@ -57,7 +57,7 @@ Once you have configured Incoming Webhook inside your Teams channels, you can se
 require 'microsoft_teams_incoming_webhook_ruby'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url  = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.url = 'YOUR INCOMING WEBHOOK URL HERE'
   m.text = 'Hello World!'
 end
 
@@ -100,10 +100,9 @@ Below there are some examples of this manipulation:
 require 'microsoft_teams_incoming_webhook_ruby'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url                        = 'YOUR INCOMING WEBHOOK URL HERE'
-  m.text                       = 'Hello World!'
-
-  m.my_arbitrary_field         = 'My value'
+  m.url = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text = 'Hello World!'
+  m.my_arbitrary_field = 'My value'
   m.my_another_arbitrary_field = { my: 'value' }
 end
 
@@ -116,11 +115,11 @@ message.send
 require 'microsoft_teams_incoming_webhook_ruby'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url  = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.url = 'YOUR INCOMING WEBHOOK URL HERE'
   m.text = 'Hello World!'
 end
 
-message.builder.my_arbitrary_field         = 'My value'
+message.builder.my_arbitrary_field = 'My value'
 message.builder.my_another_arbitrary_field = { my: 'value' }
 
 message.send
@@ -132,10 +131,9 @@ message.send
 require 'microsoft_teams_incoming_webhook_ruby'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url                     = 'YOUR INCOMING WEBHOOK URL HERE'
-  m.text                    = 'Hello World!'
-
-  m.my_custom_field         = 'My custom value'
+  m.url = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text = 'Hello World!'
+  m.my_custom_field = 'My custom value'
 end
 
 message.builder.delete_field :my_custom_field
@@ -149,10 +147,9 @@ message.send
 require 'microsoft_teams_incoming_webhook_ruby'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url                     = 'YOUR INCOMING WEBHOOK URL HERE'
-  m.text                    = 'Hello World!'
-
-  m.my_custom_field         = 'My custom value'
+  m.url = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text = 'Hello World!'
+  m.my_custom_field = 'My custom value'
 end
 
 message.builder.my_custom_field = 'Updated value'
@@ -166,8 +163,8 @@ In case of keys that starts with **@**, it is necessary to use brackets notation
 require 'microsoft_teams_incoming_webhook_ruby'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url          = 'YOUR INCOMING WEBHOOK URL HERE'
-  m.text         = 'Hello World!'
+  m.url = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text = 'Hello World!'
   m['@my_field'] = 'Lorem ipsum'
 end
 
@@ -184,8 +181,8 @@ If the builder object turn itself invalid before invocation of `send` method, th
 require 'microsoft_teams_incoming_webhook_ruby'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url          = 'YOUR INCOMING WEBHOOK URL HERE'
-  m.text         = 'Hello World!'
+  m.url = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text = 'Hello World!'
 end
 
 message.builder.delete_field :url
@@ -215,8 +212,8 @@ If a non-successful response code be returned by API (1xx, 4xx or 5xx), the gem 
 require 'microsoft_teams_incoming_webhook_ruby'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url          = 'YOUR INCOMING WEBHOOK URL HERE'
-  m.text         = 'My message'
+  m.url = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text = 'My message'
 end
 
 begin
