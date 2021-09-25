@@ -1,6 +1,7 @@
 name: Publish to Rubygems
 
 on:
+  workflow_dispatch:
   release:
     types: [created]
 

@@ -157,6 +157,15 @@ docker run -v $(pwd):/app/ -it microsoft_teams_incoming_webhook_ruby_specs
 
 ...
 
+## Another similar gems for reference
+
+There are similar open source libraries that shares the same purpose of this gem, such as:
+
+- https://github.com/toririn/teams_incoming_clients
+- https://github.com/shirts/microsoft-teams-ruby
+- https://github.com/oooooooo/msteams-ruby-client
+- https://github.com/eduardolagares/msteams_webhook
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/microsoft_teams_incoming_webhook_ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/microsoft_teams_incoming_webhook_ruby/blob/master/CODE_OF_CONDUCT.md).
