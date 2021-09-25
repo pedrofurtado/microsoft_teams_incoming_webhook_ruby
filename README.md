@@ -238,6 +238,7 @@ You can build and send messages with any supported card fields provided by Micro
 - https://amdesigner.azurewebsites.net
 - https://messagecardplayground.azurewebsites.net
 - https://docs.microsoft.com/en-us/outlook/actionable-messages/adaptive-card
+- https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/what-are-webhooks-and-connectors
 
 We will provide below some ready-to-go examples to be used, based on API described in links above.
 
@@ -377,8 +378,6 @@ It's provided a simple demo app, in Heroku, that uses the gem always in latest c
 
 https://microsoft-teams-incoming-webhook-ruby.herokuapp.com
 
-🚨 Important note: The first page load can be slow, because of Heroku free tier. But don't worry, the demo works well 🤓
-
 ## Execute demo locally
 
 To execute demo locally, use Docker with the commands below:
@@ -392,14 +391,9 @@ docker build -t microsoft_teams_incoming_webhook_ruby_demo .
 docker run -p 3000:3000 -it microsoft_teams_incoming_webhook_ruby_demo
 ```
 
-## Extra useful links
+## Similar gems for reference
 
-- https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/what-are-webhooks-and-connectors
-- ...
-
-## Another similar gems for reference
-
-There are similar open source libraries that shares the same purpose of this gem, such as:
+There are similar and great open source libraries that shares the same purpose of this gem, such as:
 
 - https://github.com/toririn/teams_incoming_clients
 - https://github.com/shirts/microsoft-teams-ruby
