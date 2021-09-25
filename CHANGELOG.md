@@ -8,3 +8,4 @@
 - Setup of Dockerfile for local tests
 - Creation of CHANGELOG.md
 - Setup of RuboCop
+- Setup of CodeCov for CI
