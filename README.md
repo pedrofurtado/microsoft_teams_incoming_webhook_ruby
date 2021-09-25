@@ -245,7 +245,7 @@ require 'microsoft_teams_incoming_webhook_ruby'
 webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url  = webhook_url
+  m.url = webhook_url
   m.text = 'Minimal message!'
 end
 
@@ -260,8 +260,8 @@ require 'microsoft_teams_incoming_webhook_ruby'
 webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url        = webhook_url
-  m.text       = 'Message with theme color!'
+  m.url = webhook_url
+  m.text = 'Message with theme color!'
   m.themeColor = 'FF0000'
 end
 
@@ -276,8 +276,8 @@ require 'microsoft_teams_incoming_webhook_ruby'
 webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url   = webhook_url
-  m.text  = 'Message with title!'
+  m.url = webhook_url
+  m.text = 'Message with title!'
   m.title = 'My title'
 end
 
@@ -292,8 +292,8 @@ require 'microsoft_teams_incoming_webhook_ruby'
 webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url     = webhook_url
-  m.text    = 'Message with summary!'
+  m.url = webhook_url
+  m.text = 'Message with summary!'
   m.summary = 'My summary'
 end
 
@@ -308,8 +308,8 @@ require 'microsoft_teams_incoming_webhook_ruby'
 webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url   = webhook_url
-  m.text  = 'Message with potential action!'
+  m.url = webhook_url
+  m.text = 'Message with potential action!'
   m.potentialAction = [
     {
       '@type': 'ActionCard',
@@ -360,8 +360,8 @@ require 'microsoft_teams_incoming_webhook_ruby'
 webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
-  m.url   = webhook_url
-  m.text  = 'Message with sections!'
+  m.url = webhook_url
+  m.text = 'Message with sections!'
   m.sections = [
     {
       'text': 'Lorem ipsum vastium',
