@@ -70,13 +70,19 @@ Note that there are 2 keys that is the minimum required to define a valid messag
 There are many other possible keys to be sent to Microsoft Incoming Webhook API.
 But pay attention to always send **at least** the 2 keys.
 
-# Gem public interface
+### Gem public interface
 
-The `MicrosoftTeamsIncomingWebhookRuby::Message` has 3 main methods:
+The `MicrosoftTeamsIncomingWebhookRuby::Message` class has 3 main methods:
 
-- `new`: Initialization of object. You need to pass a block as parameters, containing the structure that will be converted automatically to JSON and be sent to Microsoft Incoming Webhook API.
+- `new`: Initialization of object. You need to pass a block as parameter, containing the message structure. This structure will be converted automatically to JSON and be sent to Microsoft Incoming Webhook API.
 - `builder`: Message builder object, that allows add/redefine/remove fields arbitrarily.
 - `send`: Invocation of Incoming Webhook API, using HTTPS.
+
+### Message structure
+
+The Microsoft Incoming Webhook API allows us to send a variety of fields, that will result in diferents cards displayed in Teams channels.
+
+Because of this, the gem will not enforce any schema in message structure. The only required parameters are `url` and `text`. Any other options will be accepted, considering that Microsoft Incoming Webhook API accepts it.
 
 ### Configuration of message structure lately of initialization
 
@@ -85,11 +91,11 @@ The message structure and its fields can be defined in two moments:
 - Initialization of `MicrosoftTeamsIncomingWebhookRuby::Message` object
 - After object initialization, but before `send` method call
 
-🚨 You can add/remove any fields arbitrarily, but keeping at least the minimum required fields (`url` and `text`). Otherwise, an error will be generated when invoke `send` method.
+🚨 You can add/replace/remove any fields arbitrarily, but keeping at least the minimum required fields (`url` and `text`). Otherwise, an error will be generated when invoke `send` method.
 
-Below that are some examples of this manipulation:
+Below there are some examples of this manipulation:
 
-- Initialization of `MicrosoftTeamsIncomingWebhookRuby::Message` object
+- Initialization of attributes in `MicrosoftTeamsIncomingWebhookRuby::Message` object
 
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
@@ -155,76 +161,75 @@ message.builder.my_custom_field = 'Updated value'
 message.send
 ```
 
-### Error handling
+In case of keys that starts with **@**, is necessary to use brackets notation:
 
-You can build the message with any supported [card fields](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#card-fields).
-This example is taken directly from [Microsoft Docs](https://docs.microsoft.com/en-us/outlook/actionable-messages/send-via-connectors)
 ```ruby
-require "ms_teams"
+require 'microsoft_teams_incoming_webhook_ruby'
 
-message = MsTeams::Message.new do |m|
-    m.url = "https://outlook.office.com/...."
-    m.themeColor = "0072C6"
-    m.title = "Visit the Outlook Dev Portal"
-    m.text = "Click **Learn More** to learn more about Actionable Messages!"
-    m.potentialAction = [
-        {
-            "@type": "ActionCard",
-            "name": "Send Feedback",
-            "inputs": [{
-                "@type": "TextInput",
-                "id": "feedback",
-                "isMultiline": true,
-                "title": "Let us know what you think about Actionable Messages"
-            }],
-            "actions": [{
-                "@type": "HttpPOST",
-                "name": "Send Feedback",
-                "isPrimary": true,
-                "target": "http://..."
-            }]
-        },
-        {
-            "@type": "OpenUri",
-            "name": "Learn More",
-            "targets": [
-                { "os": "default", "uri": "https://docs.microsoft.com/outlook/actionable-messages" }
-            ]
-        }
-    ]
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url          = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text         = 'Hello World!'
+  m['@my_field'] = 'Lorem ipsum'
 end
 
-# You can edit any field after the message has been built by modifying the `builder` object
-message.builder.text = "Something new"
+message.builder['@my_another_new_field'] = 'Ipsum valorium'
 
 message.send
 ```
 
-Error Handling:
+### Error handling
 
-A non-2xx response code will raise a `MsTeams::Message::FailedRequest` error
+If the builder object turn itself invalid before invocation of `send` method, the gem will raise a `MicrosoftTeamsIncomingWebhookRuby::Message::Error::InvalidMessage` exception.
 
 ```ruby
-# ...
+require 'microsoft_teams_incoming_webhook_ruby'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url          = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text         = 'Hello World!'
+end
+
+message.delete_field :url
+
 begin
-    message.send
-rescue MsTeams::Message::FailedRequest => e
-    # Do stuff
+  message.send
+rescue MicrosoftTeamsIncomingWebhookRuby::Message::Error::InvalidMessage
+  puts 'Your message structure is invalid!'
 end
 ```
-
-
-Building an invalid message object will immediately raise an error
 
 ```ruby
-message = MsTeams::Message.new do |m|
-    # no url set
-    m.text = "Hello World"
+require 'microsoft_teams_incoming_webhook_ruby'
+
+begin
+  message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+    m.my_only_one_field = 'Lorem ipsum'
+  end
+rescue MicrosoftTeamsIncomingWebhookRuby::Message::Error::InvalidMessage
+  puts 'Your message structure is invalid'
+end
+```
+
+If a non-successful response code be returned by API (1xx, 4xx or 5xx), the gem will raise a `MicrosoftTeamsIncomingWebhookRuby::Message::Error::FailedRequest` exception:
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url          = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text         = 'My message'
 end
 
-> ArgumentError (`url` cannot be nil. Must be set during initialization)
-
+begin
+  message.send
+rescue MicrosoftTeamsIncomingWebhookRuby::Message::Error::FailedRequest
+  puts 'Microsoft API is down, broken, or your network failed!'
+end
 ```
+
+## Examples of cards
+
+You can build the message with any supported card fields provided by Microsoft.
 
 ## Execute tests/specs
 
@@ -243,9 +248,9 @@ docker run -v $(pwd):/app/ -it microsoft_teams_incoming_webhook_ruby_specs
 
 ## Demo
 
-It's provided a simple demo app, in Heroku, that uses the gem always in latest commit. You can check and test your QRCodes here:
+It's provided a simple demo app, in Heroku, that uses the gem always in latest commit. You can check and test your messages here:
 
-https://qrcode-pix-ruby.herokuapp.com
+https://microsoft-teams-incoming-webhook-ruby.herokuapp.com
 
 🚨 Important note: The first page load can be slow, because of Heroku free tier. But don't worry, the demo works well 🤓
 
@@ -254,12 +259,12 @@ https://qrcode-pix-ruby.herokuapp.com
 To execute demo locally, use Docker with the commands below:
 
 ```bash
-git clone https://github.com/pedrofurtado/qrcode_pix_ruby
-cd qrcode_pix_ruby/demo/
-docker build -t qrcode_pix_ruby_demo .
+git clone https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby
+cd microsoft_teams_incoming_webhook_ruby/demo/
+docker build -t microsoft_teams_incoming_webhook_ruby_demo .
 
 # Then, access http://localhost:3000 the see demo in action.
-docker run -p 3000:3000 -it qrcode_pix_ruby_demo
+docker run -p 3000:3000 -it microsoft_teams_incoming_webhook_ruby_demo
 ```
 
 ## Useful links
