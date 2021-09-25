@@ -1,7 +1,17 @@
 # Microsoft Teams Incoming Webhook Ruby
 
+[![CI](https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/pedrofurtado/microsoft_teams_incoming_webhook_ruby/branch/master/graph/badge.svg?token=R8QOY8Y6W8)](https://codecov.io/gh/pedrofurtado/microsoft_teams_incoming_webhook_ruby)
+[![Maintainability](https://api.codeclimate.com/v1/badges/31748863989fd026ad25/maintainability)](https://codeclimate.com/github/pedrofurtado/microsoft_teams_incoming_webhook_ruby/maintainability)
+[![Gem Version](https://badge.fury.io/rb/microsoft_teams_incoming_webhook_ruby.svg)](https://badge.fury.io/rb/microsoft_teams_incoming_webhook_ruby)
+[![Gem](https://img.shields.io/gem/dt/microsoft_teams_incoming_webhook_ruby.svg)]()
+[![license](https://img.shields.io/github/license/pedrofurtado/microsoft_teams_incoming_webhook_ruby.svg)]()
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby)
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
+
 Ruby gem for integration with Microsoft Teams Incoming Webhook.
 
+<img style="max-width: 100%;" src="https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby/blob/master/microsoft_teams.png?raw=true" height="100px" />
 
 ## Installation
 
