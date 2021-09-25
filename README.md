@@ -235,10 +235,126 @@ You can build and send messages with any supported card fields provided by Micro
 - https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/connectors-using
 - https://adaptivecards.io/samples
 - https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference
+- https://amdesigner.azurewebsites.net
+- https://messagecardplayground.azurewebsites.net
+- https://docs.microsoft.com/en-us/outlook/actionable-messages/adaptive-card
 
 We will provide below some ready-to-go examples to be used, based on API described in links above.
 
-###
+### Minimal
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url  = webhook_url
+  m.text = 'Minimal message!'
+end
+
+message.send
+```
+
+### Theme color
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url        = webhook_url
+  m.text       = 'Message with theme color!'
+  m.themeColor = 'FF0000'
+end
+
+message.send
+```
+
+### Title
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url   = webhook_url
+  m.text  = 'Message with title!'
+  m.title = 'FF0000'
+end
+
+message.send
+```
+
+### Summary
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url     = webhook_url
+  m.text    = 'Message with summary!'
+  m.summary = 'My summary'
+end
+
+message.send
+```
+
+### Potential action
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+webhook_url = 'YOUR INCOMING WEBHOOK URL HERE'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url   = webhook_url
+  m.text  = 'Message with potential action!'
+  m.potentialAction = [
+    {
+      "@type": "ActionCard",
+      "name": "Answer",
+      "inputs": [
+        {
+          "@type": "TextInput",
+          "id": "title",
+          "isMultiline": true,
+          "title": "Your text here"
+        }
+      ],
+      "actions": [
+        {
+          "@type": "HttpPOST",
+          "name": "Send my answer",
+          "isPrimary": true,
+          "target": 'https://example.com/example'
+        }
+      ]
+    },
+    {
+      "@type": "HttpPOST",
+      "name": "Make another action",
+      "target": "https://example.com/example2"
+    },
+    {
+      "@type": "OpenUri",
+      "name": "Open a URL",
+      "targets": [
+        {
+          "os": "default",
+          "uri": "https://github.com/pedrofurtado/microsoft_teams_incoming_webhook_ruby"
+        }
+      ]
+    }
+  ]
+end
+
+message.send
+```
 
 ## Execute tests/specs
 
