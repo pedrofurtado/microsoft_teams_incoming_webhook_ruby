@@ -7,4 +7,6 @@
 /spec/reports/
 /tmp/
 .rspec_status
-Gemfile.lock
+/Gemfile.lock
+*.gem
+*.log

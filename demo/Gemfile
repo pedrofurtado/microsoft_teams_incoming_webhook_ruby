@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+gem 'microsoft_teams_incoming_webhook_ruby', github: 'pedrofurtado/microsoft_teams_incoming_webhook_ruby', branch: 'master'
+gem 'rack'
