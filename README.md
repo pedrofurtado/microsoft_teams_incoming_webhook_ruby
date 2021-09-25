@@ -85,8 +85,6 @@ The Microsoft Incoming Webhook API allows us to send a variety of fields, that w
 
 Because of this, the gem will not enforce any schema in message structure. The only required parameters are `url` and `text`. Any other options will be accepted, considering that Microsoft Incoming Webhook API accepts it.
 
-### Configuration of message structure lately of initialization
-
 The message structure and its fields can be defined in two moments:
 
 - Initialization of `MicrosoftTeamsIncomingWebhookRuby::Message` object
