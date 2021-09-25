@@ -37,7 +37,7 @@ gem install microsoft_teams_incoming_webhook_ruby
 
 ### Configuration of Incoming Webhook connector on your Teams channels
 
-The first step before using this gem is to configure the connector inside your Team channels.
+The first step before using this gem is to configure the connector inside your Teams channels.
 
 For this purpose, please check the official documentation from Microsoft. It's listed below some useful links:
 
