@@ -70,18 +70,26 @@ Note that there are 2 keys that is the minimum required to define a valid messag
 There are many other possible keys to be sent to Microsoft Incoming Webhook API.
 But pay attention to always send **at least** the 2 keys.
 
+# Gem public interface
+
+The `MicrosoftTeamsIncomingWebhookRuby::Message` has 3 main methods:
+
+- `new`: Initialization of object. You need to pass a block as parameters, containing the structure that will be converted automatically to JSON and be sent to Microsoft Incoming Webhook API.
+- `builder`: Message builder object, that allows add/redefine/remove fields arbitrarily.
+- `send`: Invocation of Incoming Webhook API, using HTTPS.
+
 ### Configuration of message structure lately of initialization
 
-The message structure and its field can be defined in two moments:
+The message structure and its fields can be defined in two moments:
 
 - Initialization of `MicrosoftTeamsIncomingWebhookRuby::Message` object
 - After object initialization, but before `send` method call
 
-You can add/remove any fields arbitrarily, but keeping at least the minimum required fields (`url` and `text`). Otherwise, an error will be generated when invoke `send` method.
+🚨 You can add/remove any fields arbitrarily, but keeping at least the minimum required fields (`url` and `text`). Otherwise, an error will be generated when invoke `send` method.
 
 Below that are some examples of this manipulation:
 
-Initialization of `MicrosoftTeamsIncomingWebhookRuby::Message` object
+- Initialization of `MicrosoftTeamsIncomingWebhookRuby::Message` object
 
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
@@ -97,22 +105,52 @@ end
 message.send
 ```
 
-After object initialization, but before `send` method call
+- Adding of attribute after object initialization, but before `send` method call
 
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
-
-def add_another_attribute_later_please_for(message)
-  message.builder.my_arbitrary_field         = 'My value'
-  message.builder.my_another_arbitrary_field = { my: 'value' }
-end
 
 message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
   m.url  = 'YOUR INCOMING WEBHOOK URL HERE'
   m.text = 'Hello World!'
 end
 
-add_another_attributes_later_please_for(message)
+message.builder.my_arbitrary_field         = 'My value'
+message.builder.my_another_arbitrary_field = { my: 'value' }
+
+message.send
+```
+
+- Removing of attributes after object initialization, but before `send` method call
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url                     = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text                    = 'Hello World!'
+
+  m.my_custom_field         = 'My custom value'
+end
+
+message.builder.delete_field :my_custom_field
+
+message.send
+```
+
+- Redefing of attributes after object initialization, but before `send` method call
+
+```ruby
+require 'microsoft_teams_incoming_webhook_ruby'
+
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url                     = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text                    = 'Hello World!'
+
+  m.my_custom_field         = 'My custom value'
+end
+
+message.builder.my_custom_field = 'Updated value'
 
 message.send
 ```
