@@ -35,37 +35,39 @@ gem install microsoft_teams_incoming_webhook_ruby
 
 ## Usage
 
-This gems integrates your Ruby app to Microsoft Teams, though Incoming Webhook connector.
-
 ### Configuration of Incoming Webhook connector on your Teams channels
 
-The first step before using the gem is to configure this connector inside your Team channels.
+The first step before using this gem is to configure the connector inside your Team channels.
 
 For this purpose, please check the official documentation from Microsoft. It's listed below some useful links:
 
 - https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#create-incoming-webhook-1
 - https://www.youtube.com/watch?v=amvh4rzTCS0
 
-### Gem usage
+### 'Hello World' message sending, for testing
 
-Once you have Incoming webhook configured in Teams channels, you can execute a sample message (for test) with such code like this:
+Once you have Incoming Webhook configured in Teams channels, you can send a sample `Hello World` message (for testing) with such code like this:
 
-Example:
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
 
-message = MsTeams::Message.new do |m|
-    m.url = "https://outlook.office.com/...."
-    m.text = "Hello World!"
+message = MicrosoftTeamsIncomingWebhookRuby::Message.new do |m|
+  m.url  = 'YOUR INCOMING WEBHOOK URL HERE'
+  m.text = 'Hello World!'
 end
 
 message.send
 ```
 
 Note that there are 2 keys that is the minimum required to define a valid message:
- - `url`: The Incoming Webhook connector generated via Teams
- - `text`: The text of the message you are sending
+ - `url`: The URL of Incoming Webhook connector, generated via Microsoft Teams
+ - `text`: The text of your message
 
+There are many other possible keys to be sent to Microsoft Incoming Webhook API. But pay attention to always send at least this 2 keys.
+
+### Configuration of message structure lately of initialization
+
+### Error handling
 
 You can build the message with any supported [card fields](https://docs.microsoft.com/en-us/outlook/actionable-messages/message-card-reference#card-fields).
 This example is taken directly from [Microsoft Docs](https://docs.microsoft.com/en-us/outlook/actionable-messages/send-via-connectors)
@@ -103,7 +105,6 @@ message = MsTeams::Message.new do |m|
         }
     ]
 end
-
 
 # You can edit any field after the message has been built by modifying the `builder` object
 message.builder.text = "Something new"
