@@ -160,7 +160,7 @@ message.builder.my_custom_field = 'Updated value'
 message.send
 ```
 
-In case of keys that starts with **@**, is necessary to use brackets notation:
+In case of keys that starts with **@**, it is necessary to use brackets notation:
 
 ```ruby
 require 'microsoft_teams_incoming_webhook_ruby'
