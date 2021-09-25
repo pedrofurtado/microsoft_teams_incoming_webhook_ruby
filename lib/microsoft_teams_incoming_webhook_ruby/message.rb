@@ -2,6 +2,7 @@
 
 require 'net/http'
 require 'json'
+require 'openssl'
 
 module MicrosoftTeamsIncomingWebhookRuby
   class Message
@@ -41,9 +42,10 @@ module MicrosoftTeamsIncomingWebhookRuby
     end
 
     def send_by_http
-      uri          = URI.parse(@builder.url)
-      http         = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
+      uri              = URI.parse(@builder.url)
+      http             = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl     = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http.post(uri.path, @builder.to_h.to_json, 'Content-Type': 'application/json')
     end
 
