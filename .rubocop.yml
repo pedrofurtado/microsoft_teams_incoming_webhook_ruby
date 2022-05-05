@@ -8,6 +8,9 @@ AllCops:
 Gemspec/RequiredRubyVersion:
   Enabled: false
 
+Style/OpenStructUse:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
