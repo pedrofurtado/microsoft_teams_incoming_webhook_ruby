@@ -5,7 +5,7 @@ require_relative 'lib/microsoft_teams_incoming_webhook_ruby/version'
 Gem::Specification.new do |spec|
   spec.name                        = 'microsoft_teams_incoming_webhook_ruby'
   spec.version                     = MicrosoftTeamsIncomingWebhookRuby::VERSION
-  spec.authors                     = ['Kevin Chandler', 'Pedro Furtado']
+  spec.authors                     = ['Pedro Furtado']
   spec.email                       = ['pedro.felipe.azevedo.furtado@gmail.com']
   spec.summary                     = 'Ruby gem for integration with Microsoft Teams Incoming Webhook'
   spec.description                 = 'Ruby gem for integration with Microsoft Teams Incoming Webhook'
