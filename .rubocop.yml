@@ -1,6 +1,7 @@
 AllCops:
   NewCops: enable
   SuggestExtensions: false
+  SuppressRubocopWarnings: true
   Exclude:
     - spec/*
     - microsoft_teams_incoming_webhook_ruby.gemspec
